@@ -68,9 +68,12 @@ class _DSIPageState extends State<DSIPage> {
       appBar: AppBar(
         title: Row(
           children: <Widget>[
-            Text(widget.title),
-            //Spacer(),
-            Image(image: AssetImage('images/logo/bsi-white.png'), height: 32),
+            Text(
+              widget.title,
+              style: TextStyle(fontSize: 15),
+            ),
+            Spacer(),
+            Image(image: AssetImage('images/logo/bsi-white.png'), height: 30),
           ],
         ),
       ),
