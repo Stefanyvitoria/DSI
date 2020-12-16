@@ -35,6 +35,9 @@ class RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Cadastro'),
+      ),
       body: Container(
         padding: EdgeInsets.only(
           top: 40,
