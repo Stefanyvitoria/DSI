@@ -5,6 +5,7 @@ import 'login_page.dart';
 import 'forgot_password_page1.dart';
 import 'forgot_password_page2.dart';
 import 'forgot_password_page3.dart';
+import 'register_page.dart';
 
 class DsiApp extends StatelessWidget {
   @override
@@ -23,6 +24,7 @@ class DsiApp extends StatelessWidget {
         'screenforgotpassword1': (context) => ForgotPage(),
         'screenforgotpassword2': (context) => ValidEmail(),
         'screenforgotpassword3': (context) => NewPassword(),
+        'screenregisterpage': (context) => RegisterPage(),
       },
     );
   }

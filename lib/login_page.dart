@@ -20,7 +20,6 @@ class LoginPage extends StatelessWidget {
             ),
             Container(height: 20, width: 10),
             TextFormField(
-              //cursorColor: Colors.green,
               autofocus: true,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
@@ -49,7 +48,6 @@ class LoginPage extends StatelessWidget {
               height: 40,
               alignment: Alignment.centerRight,
               child: FlatButton(
-                //color: Colors.green[50],
                 onPressed: () {
                   Navigator.of(context).pushNamed('screenforgotpassword1');
                 },
@@ -75,8 +73,9 @@ class LoginPage extends StatelessWidget {
               height: 40,
               alignment: Alignment.center,
               child: FlatButton(
-                //color: Colors.green[50],
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('screenregisterpage');
+                },
                 child: Text(
                   'Cadastre-se',
                   textAlign: TextAlign.right,
