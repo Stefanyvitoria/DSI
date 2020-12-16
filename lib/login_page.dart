@@ -6,9 +6,9 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         padding: EdgeInsets.only(
-          top: 60,
-          left: 40,
-          right: 40,
+          top: 40,
+          left: 30,
+          right: 30,
         ),
         color: Colors.white,
         child: ListView(
@@ -82,6 +82,15 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 0, left: 0, right: 0, top: 150),
+              child: Text(
+                'App desenvolvido por Stefany Vitória para a disciplina de'
+                ' Desenvolvimento de Sistemas de Informação do BSI/UFRPE.',
+                style:
+                    Theme.of(context).textTheme.caption.copyWith(fontSize: 12),
+              ),
+            )
           ],
         ),
       ),
