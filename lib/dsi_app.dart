@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'dsi_page.dart';
 import 'login_page.dart';
+import 'forgot_password_page.dart';
 
 class DsiApp extends StatelessWidget {
   @override
@@ -15,8 +16,9 @@ class DsiApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity),
       initialRoute: 'screen1',
       routes: {
-        'screen1': (context) => HomePage(),
-        'screen2': (context) => DSIPage(title: 'My First App - DSI/BSI/UFRPE')
+        'screen1': (context) => LoginPage(), //HomePage(),
+        'screen2': (context) => DSIPage(title: 'My First App - DSI/BSI/UFRPE'),
+        'screenforgot': (context) => ForgotPage(),
       },
     );
   }

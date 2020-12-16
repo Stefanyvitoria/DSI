@@ -50,7 +50,9 @@ class LoginPage extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: FlatButton(
                 //color: Colors.green[50],
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('screenforgot');
+                },
                 child: Text(
                   'Esqueci minha senha.',
                   textAlign: TextAlign.right,
