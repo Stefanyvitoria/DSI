@@ -28,7 +28,7 @@ class HomePageState extends State<HomePage> {
               Navigator.of(context).pushNamed('screen2');
             },
             child: Text('Contador'),
-            color: Colors.blue[100],
+            color: Colors.green[100],
           )
         ],
       )),
