@@ -67,13 +67,14 @@ class _DSIPageState extends State<DSIPage> {
     return Scaffold(
       appBar: AppBar(
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(
               widget.title,
               style: TextStyle(fontSize: 15),
             ),
             Spacer(),
-            Image(image: AssetImage('images/logo/bsi-white.png'), height: 30),
+            Image(image: AssetImage('images/logo/bsi-white.png'), height: 32),
           ],
         ),
       ),
@@ -137,3 +138,4 @@ class DSIMainBodyWidget extends StatelessWidget {
     );
   }
 }
+
