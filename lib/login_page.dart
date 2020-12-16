@@ -32,7 +32,7 @@ class LoginPage extends StatelessWidget {
               ),
               style: TextStyle(fontSize: 20),
             ),
-            Container(height: 20, width: 10),
+            Container(height: 20),
             TextFormField(
               keyboardType: TextInputType.text,
               obscureText: true,
@@ -53,6 +53,30 @@ class LoginPage extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   'Esqueci minha senha.',
+                  textAlign: TextAlign.right,
+                  style: TextStyle(color: Colors.black38),
+                ),
+              ),
+            ),
+            Container(height: 20),
+            RaisedButton(
+              onPressed: () {},
+              child: Text(
+                'Login',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+              ),
+              autofocus: true,
+              color: Colors.green[300],
+            ),
+            Container(height: 10),
+            Container(
+              height: 40,
+              alignment: Alignment.center,
+              child: FlatButton(
+                //color: Colors.green[50],
+                onPressed: () {},
+                child: Text(
+                  'Cadastre-se',
                   textAlign: TextAlign.right,
                   style: TextStyle(color: Colors.black38),
                 ),
