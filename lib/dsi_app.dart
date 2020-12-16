@@ -15,7 +15,7 @@ class DsiApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity),
       initialRoute: 'screen1',
       routes: {
-        'screen1': (context) => LoginPage(), //HomePage(),
+        'screen1': (context) => HomePage(),
         'screen2': (context) => DSIPage(title: 'My First App - DSI/BSI/UFRPE')
       },
     );
