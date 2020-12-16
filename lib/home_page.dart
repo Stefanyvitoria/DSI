@@ -10,28 +10,45 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Scaffold(
-      appBar: AppBar(
-        title: Text('DSI App'),
-      ),
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Clique para ir ao contador.',
-            style: TextStyle(color: Colors.black, fontSize: 20),
+    return Scaffold(
+        resizeToAvoidBottomPadding: false,
+        appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Home',
+                style: TextStyle(fontSize: 23, fontWeight: FontWeight.w600),
+              ),
+              IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () {
+                  Navigator.of(context).pushNamed('screenregisterpersonalpage');
+                },
+              )
+            ],
           ),
-          FlatButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed('screen2');
-            },
-            child: Text('Contador'),
-            color: Colors.blue[100],
-          )
-        ],
-      )),
-    ));
+        ),
+        body: Container(
+          child: Opacity(
+            opacity: 0.5,
+            child: Center(
+              child: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xfff7ffe8),
+                        Color(0xffc2ca94)
+                      ], // Color(0xffc7ffba)
+                      stops: [0.8, 1.0],
+                      transform: GradientRotation(3.1415 / 2.03),
+                    ),
+                    image: DecorationImage(
+                      image: AssetImage('images/logo/bsi.png'),
+                    )),
+              ),
+            ),
+          ),
+        ));
   }
 }

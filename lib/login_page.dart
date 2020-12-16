@@ -60,7 +60,10 @@ class LoginPage extends StatelessWidget {
             ),
             Container(height: 20),
             RaisedButton(
-              onPressed: () {},
+              onPressed: () {
+                //Navigator.of(context).pop();
+                Navigator.of(context).pushReplacementNamed('screenhomepage');
+              },
               child: Text(
                 'Login',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
