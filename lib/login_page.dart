@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() {
+    return LoginPageState();
+  }
+}
+
+class LoginPageState extends State<LoginPage> {
+  String email, senha;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        height: double.maxFinite,
         padding: EdgeInsets.only(
           top: 40,
           left: 30,
           right: 30,
+          bottom: 5,
         ),
         color: Colors.white,
         child: ListView(
@@ -20,7 +30,10 @@ class LoginPage extends StatelessWidget {
             ),
             Container(height: 20, width: 10),
             TextFormField(
-              autofocus: true,
+              onChanged: (textemail) {
+                email = textemail;
+              },
+              autofocus: false,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 labelText: 'Email',
@@ -33,6 +46,9 @@ class LoginPage extends StatelessWidget {
             ),
             Container(height: 20),
             TextFormField(
+              onChanged: (textsenha) {
+                senha = textsenha;
+              },
               keyboardType: TextInputType.text,
               obscureText: true,
               decoration: InputDecoration(
@@ -73,7 +89,6 @@ class LoginPage extends StatelessWidget {
             ),
             Container(height: 10),
             Container(
-              height: 40,
               alignment: Alignment.center,
               child: FlatButton(
                 onPressed: () {
@@ -87,7 +102,7 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 0, left: 0, right: 0, top: 150),
+              padding: EdgeInsets.all(16.0),
               child: Text(
                 'App desenvolvido por Stefany Vitória para a disciplina de'
                 ' Desenvolvimento de Sistemas de Informação do BSI/UFRPE.',
