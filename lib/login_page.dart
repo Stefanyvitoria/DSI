@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
               child: FlatButton(
                 //color: Colors.green[50],
                 onPressed: () {
-                  Navigator.of(context).pushNamed('screenforgot');
+                  Navigator.of(context).pushNamed('screenforgotpassword1');
                 },
                 child: Text(
                   'Esqueci minha senha.',

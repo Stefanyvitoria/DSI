@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
 import 'dsi_page.dart';
 import 'login_page.dart';
-import 'forgot_password_page.dart';
+import 'forgot_password_page1.dart';
+import 'forgot_password_page2.dart';
+import 'forgot_password_page3.dart';
 
 class DsiApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'DSI-STE',
+      title: 'DSI-App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.green,
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      initialRoute: 'screen1',
+      initialRoute: 'screenloginpage',
       routes: {
-        'screen1': (context) => LoginPage(), //HomePage(),
-        'screen2': (context) => DSIPage(title: 'My First App - DSI/BSI/UFRPE'),
-        'screenforgot': (context) => ForgotPage(),
+        'screenloginpage': (context) => LoginPage(), //HomePage(),
+        'screendsipage': (context) =>
+            DSIPage(title: 'My First App - DSI/BSI/UFRPE'),
+        'screenforgotpassword1': (context) => ForgotPage(),
+        'screenforgotpassword2': (context) => ValidEmail(),
+        'screenforgotpassword3': (context) => NewPassword(),
       },
     );
   }

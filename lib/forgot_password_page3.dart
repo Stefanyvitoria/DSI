@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ForgotPage extends StatefulWidget {
+class NewPassword extends StatefulWidget {
   @override
-  State<ForgotPage> createState() {
-    return ForgotPageState();
+  State<NewPassword> createState() {
+    return NewPasswordState();
   }
 }
 
-class ForgotPageState extends State<ForgotPage> {
+class NewPasswordState extends State<NewPassword> {
   String email = '';
 
   // ignore: non_constant_identifier_names
@@ -16,13 +16,14 @@ class ForgotPageState extends State<ForgotPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Instruções Enviadas'),
-          content: Text('Verifique seu endereço de E-mail.'),
+          title: Text('Senha Atualizada.'),
+          content: Text('Faça login com seu e-mail e senha atualizada.'),
           actions: [
             FlatButton(
               child: Text('Ok'),
               onPressed: () {
                 Navigator.of(context).pop();
+                Navigator.of(context).pushReplacementNamed('screenloginpage');
               },
             )
           ],
@@ -35,7 +36,7 @@ class ForgotPageState extends State<ForgotPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Recuperar senha'),
+          title: Text('Redefinir Senha'),
         ),
         body: ListView(children: [
           Column(
@@ -47,13 +48,17 @@ class ForgotPageState extends State<ForgotPage> {
                   left: 25,
                   right: 25,
                 ),
-                child: Text(
-                  'Confirme seu endereço de e-mail cadastrado e receba instruções para recuperar sua senha.',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    color: Colors.black,
-                    fontSize: 20,
-                  ),
+                child: TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                      labelText: 'Nova Senha',
+                      labelStyle: TextStyle(
+                        fontSize: 15,
+                      )),
+                  onChanged: (textEmail) {
+                    email = textEmail;
+                    //print(email);
+                  },
                 ),
               ),
               Padding(
@@ -65,7 +70,7 @@ class ForgotPageState extends State<ForgotPage> {
                 child: TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
-                      labelText: 'Email',
+                      labelText: 'Confirmar Senha',
                       labelStyle: TextStyle(
                         fontSize: 15,
                       )),
@@ -79,7 +84,7 @@ class ForgotPageState extends State<ForgotPage> {
                 onPressed: () {
                   Msg();
                 },
-                child: Text('Confirmar'),
+                child: Text('Redefinir senha'),
                 color: Colors.green[100],
               )
             ],
