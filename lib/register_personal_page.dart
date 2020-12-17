@@ -8,8 +8,7 @@ class RegisterPersonalPage extends StatefulWidget {
 }
 
 class RegisterPersonalPageState extends State<RegisterPersonalPage> {
-  String email = '';
-  String _sexo, dataDeNascimento, cep;
+  String nome, sexo, dataDeNascimento, enderco, cpf, estadocivil;
 
   // ignore: non_constant_identifier_names
   void Msg() {
@@ -17,14 +16,13 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Cadastro Realizado.'),
-          content: Text('Faça login com seu e-mail e senha.'),
+          title: Text('Perfil Salvo.'),
           actions: [
             FlatButton(
               child: Text('Ok'),
               onPressed: () {
                 Navigator.of(context).pop();
-                Navigator.of(context).pushReplacementNamed('screenloginpage');
+                Navigator.of(context).pop();
               },
             )
           ],
@@ -61,6 +59,9 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
             ),
             Container(height: 20, width: 10),
             TextFormField(
+              onChanged: (textn) {
+                nome = textn;
+              },
               autofocus: false,
               decoration: InputDecoration(
                 labelText: 'Nome',
@@ -83,10 +84,10 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
                         "Sexo",
                         style: TextStyle(color: Colors.black, fontSize: 20),
                       ),
-                      value: _sexo,
+                      value: sexo,
                       onChanged: (changedValue) {
                         setState(() {
-                          _sexo = changedValue;
+                          sexo = changedValue;
                         });
                       },
                       items:
@@ -100,8 +101,8 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
                 Container(height: 20, width: 10),
                 new Flexible(
                     child: TextFormField(
-                  onChanged: (text) {
-                    dataDeNascimento = text;
+                  onChanged: (textn) {
+                    dataDeNascimento = textn;
                   },
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
@@ -113,6 +114,9 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
             ),
             Container(height: 5, width: 10),
             TextFormField(
+              onChanged: (texten) {
+                enderco = texten;
+              },
               autofocus: false,
               decoration: InputDecoration(
                 labelText: 'Endereço',
@@ -126,8 +130,8 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
             Container(height: 20, width: 10),
             new Flexible(
                 child: TextFormField(
-              onChanged: (text) {
-                cep = text;
+              onChanged: (textcpf) {
+                cpf = textcpf;
               },
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
@@ -137,6 +141,9 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
             )),
             Container(height: 20, width: 10),
             TextFormField(
+              onChanged: (textec) {
+                estadocivil = textec;
+              },
               autofocus: false,
               decoration: InputDecoration(
                 labelText: 'Estado civil',
@@ -150,7 +157,7 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
             Container(height: 20, width: 10),
             RaisedButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                Msg();
               },
               child: Text(
                 'Salvar Perfil',
