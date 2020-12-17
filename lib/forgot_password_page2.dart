@@ -8,7 +8,7 @@ class ValidEmail extends StatefulWidget {
 }
 
 class ValidEmailState extends State<ValidEmail> {
-  String email = '';
+  String codigo = '';
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,10 @@ class ValidEmailState extends State<ValidEmail> {
                   ),
                   child: Text(
                     'Insira o código recebido por e-mail:',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black),
                   )),
               Padding(
                 padding: const EdgeInsets.only(
@@ -43,9 +46,8 @@ class ValidEmailState extends State<ValidEmail> {
                       labelStyle: TextStyle(
                         fontSize: 15,
                       )),
-                  onChanged: (textEmail) {
-                    email = textEmail;
-                    //print(email);
+                  onChanged: (textcodigo) {
+                    codigo = textcodigo;
                   },
                 ),
               ),

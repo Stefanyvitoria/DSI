@@ -8,7 +8,7 @@ class ForgotPage extends StatefulWidget {
 }
 
 class ForgotPageState extends State<ForgotPage> {
-  String email = '';
+  String email;
 
   // ignore: non_constant_identifier_names
   void Msg() {
@@ -66,14 +66,13 @@ class ForgotPageState extends State<ForgotPage> {
                 ),
                 child: TextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       labelText: 'Email',
                       labelStyle: TextStyle(
                         fontSize: 15,
                       )),
-                  onChanged: (textEmail) {
-                    email = textEmail;
-                    //print(email);
+                  onChanged: (textemail) {
+                    email = textemail;
                   },
                 ),
               ),

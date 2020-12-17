@@ -8,7 +8,7 @@ class NewPassword extends StatefulWidget {
 }
 
 class NewPasswordState extends State<NewPassword> {
-  String email = '';
+  String novasenha = '';
 
   // ignore: non_constant_identifier_names
   void Msg() {
@@ -55,8 +55,8 @@ class NewPasswordState extends State<NewPassword> {
                       labelStyle: TextStyle(
                         fontSize: 15,
                       )),
-                  onChanged: (textEmail) {
-                    email = textEmail;
+                  onChanged: (texts) {
+                    novasenha = texts;
                     //print(email);
                   },
                 ),
@@ -74,9 +74,8 @@ class NewPasswordState extends State<NewPassword> {
                       labelStyle: TextStyle(
                         fontSize: 15,
                       )),
-                  onChanged: (textEmail) {
-                    email = textEmail;
-                    //print(email);
+                  onChanged: (texts) {
+                    novasenha = texts;
                   },
                 ),
               ),
