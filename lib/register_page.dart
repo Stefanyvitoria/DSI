@@ -8,7 +8,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class RegisterPageState extends State<RegisterPage> {
-  String email = '';
+  String email, usuario, senha1, senha2;
 
   // ignore: non_constant_identifier_names
   void Msg() {
@@ -60,6 +60,9 @@ class RegisterPageState extends State<RegisterPage> {
             ),
             Container(height: 20, width: 10),
             TextFormField(
+              onChanged: (texte) {
+                email = texte;
+              },
               autofocus: false,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
@@ -73,6 +76,9 @@ class RegisterPageState extends State<RegisterPage> {
             ),
             Container(height: 20, width: 10),
             TextFormField(
+              onChanged: (textu) {
+                usuario = textu;
+              },
               autofocus: false,
               decoration: InputDecoration(
                 labelText: 'Usuário',
@@ -85,6 +91,9 @@ class RegisterPageState extends State<RegisterPage> {
             ),
             Container(height: 20),
             TextFormField(
+              onChanged: (texts) {
+                senha1 = texts;
+              },
               keyboardType: TextInputType.text,
               obscureText: true,
               decoration: InputDecoration(
@@ -98,6 +107,9 @@ class RegisterPageState extends State<RegisterPage> {
             ),
             Container(height: 20),
             TextFormField(
+              onChanged: (texts1) {
+                senha2 = texts1;
+              },
               keyboardType: TextInputType.text,
               obscureText: true,
               decoration: InputDecoration(
