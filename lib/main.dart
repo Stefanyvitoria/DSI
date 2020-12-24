@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+//import 'home_popup_renders.dart';
+import 'home_wrap.dart';
 
-import 'dsi_app.dart';
-
-void main() {
-  runApp(DsiApp());
+main() {
+  runApp(App());
 }
