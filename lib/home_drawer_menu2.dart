@@ -17,7 +17,7 @@ class MenuDrawer extends StatefulWidget {
 
 class _MenuDrawerState extends State<MenuDrawer> {
   int n = 1;
-  List<Widget> listobjects = [Text('ok')];
+  List<Widget> listobjects = [Text('ok - 1')];
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
 
   addListTile() {
     print('add $n');
-    listobjects.add(Text('ok $n'));
+    listobjects.add(Text('ok - $n'));
   }
 
   rmListTile(ind) {
