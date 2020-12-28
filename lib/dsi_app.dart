@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'login_page.dart';
 import 'forgot_password_page1.dart';
-import 'forgot_password_page2.dart';
-import 'forgot_password_page3.dart';
 import 'register_page.dart';
 import 'home_page.dart';
 import 'register_personal_page.dart';
@@ -21,8 +19,8 @@ class DsiApp extends StatelessWidget {
       routes: {
         'screenloginpage': (context) => LoginPage(),
         'screenhomepage': (context) => HomePage(),
-        'screenforgotpassword1': (context) => ForgotPage(),
-        'screenforgotpassword2': (context) => ValidEmail(),
+        'screenforgotpassword1': (context) => ConfirmEmail(),
+        'screenforgotpassword2': (context) => ValidCode(),
         'screenforgotpassword3': (context) => NewPassword(),
         'screenregisterpage': (context) => RegisterPage(),
         'screenregisterpersonalpage': (context) => RegisterPersonalPage(),
