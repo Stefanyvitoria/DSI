@@ -10,8 +10,7 @@ class RegisterPersonalPage extends StatefulWidget {
 class RegisterPersonalPageState extends State<RegisterPersonalPage> {
   String nome, sexo, dataDeNascimento, enderco, cpf, estadocivil;
 
-  // ignore: non_constant_identifier_names
-  void Msg() {
+  void msg() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -157,7 +156,7 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
             Container(height: 20, width: 10),
             RaisedButton(
               onPressed: () {
-                Msg();
+                msg();
               },
               child: Text(
                 'Salvar Perfil',

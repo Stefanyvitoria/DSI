@@ -177,7 +177,7 @@ class NewPasswordState extends State<NewPassword> {
               child: Text('Ok'),
               onPressed: () {
                 Navigator.of(context).pop();
-                Navigator.of(context).pushReplacementNamed('screenloginpage');
+                Navigator.of(context).pushReplacementNamed('/');
               },
             )
           ],

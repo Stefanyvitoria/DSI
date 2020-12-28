@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -26,7 +27,9 @@ class LoginPageState extends State<LoginPage> {
             SizedBox(
               width: 130,
               height: 130,
-              child: Image.asset('images/logo/bsi.png'),
+              child: Image(
+                image: Images.bsiLogo,
+              ),
             ),
             Container(height: 20, width: 10),
             TextFormField(
