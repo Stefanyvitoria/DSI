@@ -8,11 +8,11 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  MyPopupItem selected_item = choices[0]; // default
+  MyPopupItem selectedItem = choices[0]; // default
 
   void _select(MyPopupItem item) {
     setState(() {
-      selected_item = item;
+      selectedItem = item;
     });
   }
 
@@ -52,44 +52,43 @@ class HomePageState extends State<HomePage> {
                   child: Text(choice.title),
                 );
               }).toList();
-            },)
+            },
+          )
         ],
       ),
-
-      body:
-
-      buildItem(),
+      body: buildItem(),
     );
   }
 
   buildItem() {
-    return Container(child: SelectedOption(choice: selected_item),);
+    return Container(
+      child: SelectedOption(choice: selectedItem),
+    );
   }
 }
 
-
 class SelectedOption extends StatelessWidget {
-  MyPopupItem choice;
-  SelectedOption({Key key, this.choice }) : super(key: key);
+  final MyPopupItem choice;
+  SelectedOption({Key key, this.choice}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(choice.icon,
-                size: 140.0,
-                color: Colors.brown,),
-          Text(choice.title,
-          style: TextStyle(
+    return Container(
+        child: Center(
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Icon(
+          choice.icon,
+          size: 140.0,
           color: Colors.brown,
-          fontSize: 30.0),)
-        ]),
+        ),
+        Text(
+          choice.title,
+          style: TextStyle(color: Colors.brown, fontSize: 30.0),
+        )
+      ]),
     ));
   }
 }
-
 
 class MyPopupItem {
   MyPopupItem({this.title, this.icon});
