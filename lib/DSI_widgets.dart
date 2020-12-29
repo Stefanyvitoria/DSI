@@ -19,6 +19,7 @@ class DsiScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
+      body: this.body,
     );
   }
 
