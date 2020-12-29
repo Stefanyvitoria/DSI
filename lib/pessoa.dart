@@ -75,6 +75,8 @@ class ListPessoaPageState extends State<ListPessoaPage> {
 
   @override
   Widget build(BuildContext context) {
-    return DsiScaffold();
+    return DsiScaffold(
+      body: Container(),
+    );
   }
 }

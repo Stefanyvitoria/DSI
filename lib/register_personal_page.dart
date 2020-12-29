@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_dsi/infraestrurura.dart';
+import 'infraestrurura.dart';
 
 class RegisterPersonalPage extends StatefulWidget {
   @override
@@ -9,26 +11,6 @@ class RegisterPersonalPage extends StatefulWidget {
 
 class RegisterPersonalPageState extends State<RegisterPersonalPage> {
   String nome, sexo, dataDeNascimento, enderco, cpf, estadocivil;
-
-  void msg() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Perfil Salvo.'),
-          actions: [
-            FlatButton(
-              child: Text('Ok'),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-              },
-            )
-          ],
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +138,15 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
             Container(height: 20, width: 10),
             RaisedButton(
               onPressed: () {
-                msg();
+                print('ok');
+                DSIHelper().showMessage(
+                    title: 'Sucesso.',
+                    context: context,
+                    message: 'Perfil salvo com sucesso.',
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                    });
               },
               child: Text(
                 'Salvar Perfil',

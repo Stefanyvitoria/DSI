@@ -29,14 +29,10 @@ class DsiScaffold extends StatelessWidget {
       actions: <Widget>[
         IconButton(
           onPressed: () {
-            DSIHelper().showMessage(
-              context: context,
-              title: 'Pesquisar.',
-              message: 'Falta implementar.',
-            );
+            Navigator.of(context).pushNamed('/homepage/account');
           },
           icon: Icon(
-            Icons.search,
+            Icons.account_box,
             color: Colors.white,
           ),
         ),

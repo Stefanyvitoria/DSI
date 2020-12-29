@@ -58,7 +58,7 @@ class DsiApp extends StatelessWidget {
       'screenforgotpassword2': (context) => ValidCode(),
       'screenforgotpassword3': (context) => NewPassword(),
       'screenregisterpage': (context) => RegisterPage(),
-      'screenregisterpersonalpage': (context) => RegisterPersonalPage(),
+      '/homepage/account': (context) => RegisterPersonalPage(),
     };
   }
 }
