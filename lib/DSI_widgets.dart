@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'infraestrurura.dart';
+import 'constants.dart';
 
 class DsiScaffold extends StatelessWidget {
   final String title;
@@ -19,7 +20,9 @@ class DsiScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
+      drawer: _buildDrawerMenu(context),
       body: this.body,
+      floatingActionButton: this.floatActionButton,
     );
   }
 
@@ -76,6 +79,71 @@ class DsiScaffold extends StatelessWidget {
           ],
         )
       ],
+    );
+  }
+
+  Drawer _buildDrawerMenu(context) {
+    //var themeData = Theme.of(context);
+
+    return Drawer(
+      child: ListView(
+        children: [
+          UserAccountsDrawerHeader(
+              accountEmail: Text('Ste@ufrpe.br'),
+              accountName: Text('Ste'),
+              otherAccountsPictures: [
+                Container(
+                  child: Image(
+                    alignment: Alignment.center,
+                    image: Images.bsiLogoWhite,
+                  ),
+                ),
+              ]),
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text('Home'),
+            onTap: () =>
+                Navigator.of(context).pushReplacementNamed('/homepage'),
+          ),
+          Divider(),
+          ListTile(
+              leading: Icon(Icons.people),
+              title: Text('Pessoas'),
+              onTap: () => DSIHelper().showMessage(
+                    title: 'Pessoas.',
+                    message: 'A implementar',
+                    context: context,
+                  )
+              //Navigator.of(context).pushReplacementNamed('/listprofessor'),
+              ),
+          ListTile(
+              leading: Icon(Icons.book),
+              title: Text('Alunos'),
+              onTap: () => DSIHelper().showMessage(
+                    title: 'Alunos',
+                    message: 'A implementar.',
+                    context: context,
+                  )
+              //Navigator.of(context).pushReplacementNamed('/listaluno'),
+              ),
+          ListTile(
+              leading: Icon(Icons.school),
+              title: Text('Professores'),
+              onTap: () => DSIHelper().showMessage(
+                    title: 'Professores.',
+                    message: 'A implementar',
+                    context: context,
+                  )
+              //Navigator.of(context).pushReplacementNamed('/listprofessor'),
+              ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.exit_to_app),
+            title: Text('Sair'),
+            onTap: () => Navigator.of(context).pushReplacementNamed('/'),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -15,7 +15,6 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return DsiScaffold(
       title: 'Home',
-      showAppBar: true,
       body: _buildBody(),
     );
   }

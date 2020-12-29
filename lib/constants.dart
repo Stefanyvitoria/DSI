@@ -13,4 +13,8 @@ class Constants {
 
 class Images {
   static final AssetImage bsiLogo = AssetImage('images/logo/bsi.png');
+  static final AssetImage bsiLogoBlack =
+      AssetImage('images/logo/bsi-black.png');
+  static final AssetImage bsiLogoWhite =
+      AssetImage('images/logo/bsi-white.png');
 }
