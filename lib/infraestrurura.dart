@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-class DSIHelper {
-  void showMessage({
+final dsihelper = _DSIHelper();
+
+class _DSIHelper {
+  void showAlert({
     context,
     title,
     message,
@@ -27,5 +29,14 @@ class DSIHelper {
         );
       },
     );
+  }
+
+  void showMessage({
+    context,
+    message = 'Operação realizada com sucesso.',
+  }) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+    ));
   }
 }

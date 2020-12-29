@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'infraestrurura.dart';
 import 'constants.dart';
+import 'DSI_widgets.dart';
 
 class DsiScaffold extends StatelessWidget {
   final String title;
@@ -42,7 +43,7 @@ class DsiScaffold extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
-            DSIHelper().showMessage(
+            dsihelper.showAlert(
               title: 'Notificações.',
               message: 'Falta implementar.',
               context: context,
@@ -60,7 +61,7 @@ class DsiScaffold extends StatelessWidget {
               {Navigator.of(context).pushReplacementNamed('/')}
             else if (value == 'pref')
               {
-                DSIHelper().showMessage(
+                dsihelper.showAlert(
                   title: 'Preferências.',
                   message: 'Falta implementar',
                   context: context,
@@ -107,19 +108,15 @@ class DsiScaffold extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-              leading: Icon(Icons.people),
-              title: Text('Pessoas'),
-              onTap: () => DSIHelper().showMessage(
-                    title: 'Pessoas.',
-                    message: 'A implementar',
-                    context: context,
-                  )
-              //Navigator.of(context).pushReplacementNamed('/listprofessor'),
-              ),
+            leading: Icon(Icons.people),
+            title: Text('Pessoas'),
+            onTap: () =>
+                Navigator.of(context).pushReplacementNamed('/listpessoa'),
+          ),
           ListTile(
               leading: Icon(Icons.book),
               title: Text('Alunos'),
-              onTap: () => DSIHelper().showMessage(
+              onTap: () => dsihelper.showAlert(
                     title: 'Alunos',
                     message: 'A implementar.',
                     context: context,
@@ -129,9 +126,9 @@ class DsiScaffold extends StatelessWidget {
           ListTile(
               leading: Icon(Icons.school),
               title: Text('Professores'),
-              onTap: () => DSIHelper().showMessage(
+              onTap: () => dsihelper.showAlert(
                     title: 'Professores.',
-                    message: 'A implementar',
+                    message: 'A implementar.',
                     context: context,
                   )
               //Navigator.of(context).pushReplacementNamed('/listprofessor'),
@@ -144,6 +141,71 @@ class DsiScaffold extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class DSIBasicFormPage extends StatefulWidget {
+  final String title;
+  final onSave;
+  final Widget body;
+  final hideButtons;
+
+  DSIBasicFormPage({
+    @required this.title,
+    this.onSave,
+    this.body,
+    this.hideButtons = false,
+  });
+
+  @override
+  _DSIBasicFormPageState createState() => _DSIBasicFormPageState();
+}
+
+class _DSIBasicFormPageState extends State<DSIBasicFormPage> {
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return DsiScaffold(
+      title: widget.title,
+      body: SingleChildScrollView(
+        child: Form(
+          key: formKey,
+          child: Padding(
+            padding: Constants.paddingMedium,
+            child: Column(
+              children: <Widget>[
+                widget.body,
+                buildFormButtons('Salvar'),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildFormButtons(txt) {
+    if (widget.hideButtons) return null;
+
+    return Column(
+      children: <Widget>[
+        SizedBox(
+          width: double.infinity,
+          child: RaisedButton(
+            child: Text(txt),
+            onPressed: () {
+              //if () implementar *****
+            },
+          ),
+        ),
+        FlatButton(
+          child: Text('Cancelar'),
+          padding: EdgeInsets.all(5.0),
+          onPressed: () {}, // A implementar *****
+        )
+      ],
     );
   }
 }

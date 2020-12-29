@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_dsi/infraestrurura.dart';
 import 'infraestrurura.dart';
 
 class RegisterPersonalPage extends StatefulWidget {
@@ -139,7 +138,7 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
             RaisedButton(
               onPressed: () {
                 print('ok');
-                DSIHelper().showMessage(
+                dsihelper.showAlert(
                     title: 'Sucesso.',
                     context: context,
                     message: 'Perfil salvo com sucesso.',

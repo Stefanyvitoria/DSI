@@ -5,6 +5,7 @@ import 'forgot_password_page.dart';
 import 'register_page.dart';
 import 'home_page.dart';
 import 'register_personal_page.dart';
+import 'pessoa.dart';
 
 void main() {
   _initDB();
@@ -54,11 +55,13 @@ class DsiApp extends StatelessWidget {
     return {
       '/': (context) => LoginPage(),
       '/homepage': (context) => HomePage(),
-      'screenforgotpassword1': (context) => ConfirmEmail(),
-      'screenforgotpassword2': (context) => ValidCode(),
-      'screenforgotpassword3': (context) => NewPassword(),
-      'screenregisterpage': (context) => RegisterPage(),
+      '/register': (context) => RegisterPage(),
+      'forgotpassword1': (context) => ConfirmEmail(),
+      'forgotpassword2': (context) => ValidCode(),
+      'forgotpassword3': (context) => NewPassword(),
       '/homepage/account': (context) => RegisterPersonalPage(),
+      '/listpessoa': (context) => ListPessoaPage(),
+      'maintainpessoa': (context) => MaintainPessoaPage(),
     };
   }
 }

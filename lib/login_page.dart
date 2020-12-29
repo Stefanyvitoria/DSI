@@ -68,8 +68,7 @@ class LoginPageState extends State<LoginPage> {
               alignment: Alignment.centerRight,
               child: FlatButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .pushReplacementNamed('screenforgotpassword1');
+                  Navigator.of(context).pushReplacementNamed('forgotpassword1');
                 },
                 child: Text(
                   'Esqueci minha senha.',
@@ -96,8 +95,7 @@ class LoginPageState extends State<LoginPage> {
               alignment: Alignment.center,
               child: FlatButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .pushReplacementNamed('screenregisterpage');
+                  Navigator.of(context).pushReplacementNamed('/register');
                 },
                 child: Text(
                   'Cadastre-se',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'DSI_widgets.dart';
 
 class ConfirmEmail extends StatefulWidget {
   @override
@@ -23,8 +24,7 @@ class ConfirmEmailState extends State<ConfirmEmail> {
               child: Text('Ok'),
               onPressed: () {
                 Navigator.of(context).pop();
-                Navigator.of(context)
-                    .pushReplacementNamed('screenforgotpassword2');
+                Navigator.of(context).pushReplacementNamed('forgotpassword2');
               },
             )
           ],
@@ -142,8 +142,7 @@ class ValidCodeState extends State<ValidCode> {
               ),
               RaisedButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .pushReplacementNamed('screenforgotpassword3');
+                  Navigator.of(context).pushReplacementNamed('forgotpassword3');
                 },
                 child: Text('Verificar código'),
                 color: Colors.green[100],
