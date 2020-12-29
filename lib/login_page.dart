@@ -82,7 +82,7 @@ class LoginPageState extends State<LoginPage> {
             RaisedButton(
               onPressed: () {
                 //Navigator.of(context).pop();
-                Navigator.of(context).pushReplacementNamed('screenhomepage');
+                Navigator.of(context).pushReplacementNamed('/homepage');
               },
               child: Text(
                 'Login',

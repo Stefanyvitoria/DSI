@@ -53,7 +53,7 @@ class DsiApp extends StatelessWidget {
   _buidRoutes(context) {
     return {
       '/': (context) => LoginPage(),
-      'screenhomepage': (context) => HomePage(),
+      '/homepage': (context) => HomePage(),
       'screenforgotpassword1': (context) => ConfirmEmail(),
       'screenforgotpassword2': (context) => ValidCode(),
       'screenforgotpassword3': (context) => NewPassword(),
