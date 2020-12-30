@@ -6,12 +6,7 @@ abstract class Pessoa {
   int id;
   String cpf, nome, endereco;
 
-  Pessoa(id, cpf, nome, endereco) {
-    this.id = id;
-    this.cpf = cpf;
-    this.nome = nome;
-    this.endereco = endereco;
-  }
+  Pessoa({this.id, this.cpf, this.nome, this.endereco});
 }
 
 var pessoaControler = PessoaControler();
@@ -119,7 +114,7 @@ class _ListPessoaPageState extends State<ListPessoaPage> {
         title: Text(pessoa.nome),
         subtitle: Text('${pessoa.endereco}'),
         onTap: () {
-          Navigator.of(context).pushNamed('maintainpassoa');
+          Navigator.of(context).pushNamed('/maintainpessoa', arguments: pessoa);
         },
       ),
     );
@@ -129,7 +124,9 @@ class _ListPessoaPageState extends State<ListPessoaPage> {
 class MaintainPessoaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Pessoa pessoa = ModalRoute.of(context).settings.arguments;
+    Pessoa pessoa = ModalRoute.of(context)
+        .settings
+        .arguments; //Recupera o argumento passado com a rota.
 
     return DSIBasicFormPage(
       title: 'Pessoa',
@@ -140,40 +137,31 @@ class MaintainPessoaPage extends StatelessWidget {
       body: Wrap(
         children: [
           TextFormField(
-            onChanged: (textn) {},
-            autofocus: false,
-            decoration: InputDecoration(
-              labelText: 'Nome',
-              labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-            style: TextStyle(fontSize: 20),
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(labelText: 'Nome'),
+            validator: (String value) {
+              return value.isEmpty ? 'Nome inválido.' : null;
+            },
+            initialValue: pessoa.nome,
+            onSaved: (newValue) => pessoa.nome = newValue,
           ),
           TextFormField(
-            onChanged: (textn) {},
-            autofocus: false,
-            decoration: InputDecoration(
-              labelText: 'CPF',
-              labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-            style: TextStyle(fontSize: 20),
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(labelText: 'CPF'),
+            validator: (String value) {
+              return value.isEmpty ? 'CPF inválido.' : null;
+            },
+            initialValue: pessoa.cpf,
+            onSaved: (newValue) => pessoa.cpf = newValue,
           ),
           TextFormField(
-            onChanged: (textn) {},
-            autofocus: false,
-            decoration: InputDecoration(
-              labelText: 'Endereço',
-              labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-            style: TextStyle(fontSize: 20),
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(labelText: 'Endereço'),
+            validator: (String value) {
+              return value.isEmpty ? 'Endereço Inválido.' : null;
+            },
+            initialValue: pessoa.endereco,
+            onSaved: (newValue) => pessoa.endereco = newValue,
           ),
         ],
       ),

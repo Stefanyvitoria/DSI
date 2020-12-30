@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'infraestrurura.dart';
 import 'constants.dart';
-import 'DSI_widgets.dart';
+//import 'DSI_widgets.dart';
 
 class DsiScaffold extends StatelessWidget {
   final String title;
@@ -196,14 +196,20 @@ class _DSIBasicFormPageState extends State<DSIBasicFormPage> {
           child: RaisedButton(
             child: Text(txt),
             onPressed: () {
-              //if () implementar *****
+              if (!formKey.currentState.validate()) return;
+              setState(() {
+                formKey.currentState.save();
+              });
+              widget.onSave.call();
             },
           ),
         ),
         FlatButton(
           child: Text('Cancelar'),
           padding: EdgeInsets.all(5.0),
-          onPressed: () {}, // A implementar *****
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         )
       ],
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'DSI_widgets.dart';
+//import 'DSI_widgets.dart';
 
 class ConfirmEmail extends StatefulWidget {
   @override
@@ -11,8 +11,8 @@ class ConfirmEmail extends StatefulWidget {
 class ConfirmEmailState extends State<ConfirmEmail> {
   String email;
 
-  // ignore: non_constant_identifier_names
-  void Msg() {
+  
+  void msg() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -78,7 +78,7 @@ class ConfirmEmailState extends State<ConfirmEmail> {
               ),
               RaisedButton(
                 onPressed: () {
-                  Msg();
+                  msg();
                 },
                 child: Text('Confirmar'),
                 color: Colors.green[100],
@@ -164,7 +164,7 @@ class NewPasswordState extends State<NewPassword> {
   String novasenha = '';
 
   // ignore: non_constant_identifier_names
-  void Msg() {
+  void msg() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -234,7 +234,7 @@ class NewPasswordState extends State<NewPassword> {
               ),
               RaisedButton(
                 onPressed: () {
-                  Msg();
+                  msg();
                 },
                 child: Text('Redefinir senha'),
                 color: Colors.green[100],

@@ -23,6 +23,7 @@ class LoginPageState extends State<LoginPage> {
         ),
         color: Colors.white,
         child: ListView(
+          shrinkWrap: true,
           children: [
             SizedBox(
               width: 130,

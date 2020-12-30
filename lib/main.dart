@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_dsi/aluno.dart';
 import 'package:project_dsi/constants.dart';
 import 'login_page.dart';
 import 'forgot_password_page.dart';
@@ -61,11 +62,23 @@ class DsiApp extends StatelessWidget {
       'forgotpassword3': (context) => NewPassword(),
       '/homepage/account': (context) => RegisterPersonalPage(),
       '/listpessoa': (context) => ListPessoaPage(),
-      'maintainpessoa': (context) => MaintainPessoaPage(),
+      '/maintainpessoa': (context) => MaintainPessoaPage(),
     };
   }
 }
 
 void _initDB() {
-  //A implementar.
+  var i = 1;
+  for (i; i <= 20; i++) {
+    var matricula = i.toString().padLeft(11, '0');
+    var cpf =
+        '${matricula.substring(0, 3)}.${matricula.substring(3, 6)}.${matricula.substring(6, 9)}-${matricula.substring(9)}';
+    var aluno = Aluno(
+      cpf: cpf,
+      nome: 'Aluno $i',
+      endereco: 'Rua $i, s/n',
+      matricula: matricula,
+    );
+    pessoaControler.save(aluno);
+  }
 }
