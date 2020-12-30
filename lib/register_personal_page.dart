@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'infraestrurura.dart';
+import 'DSI_widgets.dart';
 
 class RegisterPersonalPage extends StatefulWidget {
   @override
@@ -9,21 +10,15 @@ class RegisterPersonalPage extends StatefulWidget {
 }
 
 class RegisterPersonalPageState extends State<RegisterPersonalPage> {
-  String nome, sexo, dataDeNascimento, enderco, cpf, estadocivil;
+  String nome, sexo, dataDeNascimento, endereco, cpf, estadocivil;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Perfil'),
-      ),
-      body: Container(
-        padding: EdgeInsets.only(
-          top: 40,
-          left: 30,
-          right: 30,
-        ),
-        color: Colors.white,
+    return DsiScaffold(
+      title: 'Perfil',
+      showAppBar: true,
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
         child: ListView(
           children: [
             Center(
@@ -39,18 +34,11 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
             ),
             Container(height: 20, width: 10),
             TextFormField(
-              onChanged: (textn) {
-                nome = textn;
+              onChanged: (value) {
+                nome = value;
               },
-              autofocus: false,
-              decoration: InputDecoration(
-                labelText: 'Nome',
-                labelStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400),
-              ),
-              style: TextStyle(fontSize: 20),
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(labelText: 'Nome'),
             ),
             Container(height: 20, width: 10),
             Row(
@@ -60,14 +48,11 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
                   width: 110,
                   height: 65,
                   child: DropdownButton<String>(
-                      hint: Text(
-                        "Sexo",
-                        style: TextStyle(color: Colors.black, fontSize: 20),
-                      ),
+                      hint: Text("Sexo"),
                       value: sexo,
-                      onChanged: (changedValue) {
+                      onChanged: (value) {
                         setState(() {
-                          sexo = changedValue;
+                          sexo = value;
                         });
                       },
                       items:
@@ -78,80 +63,63 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
                         );
                       }).toList()),
                 ),
-                Container(height: 20, width: 10),
-                new Flexible(
+                Container(width: 10),
+                Expanded(
                     child: TextFormField(
-                  onChanged: (textn) {
-                    dataDeNascimento = textn;
+                  onChanged: (value) {
+                    dataDeNascimento = value;
                   },
                   keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Data de nascimento:',
-                    labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                   ),
-                ))
+                )),
               ],
             ),
             Container(height: 5, width: 10),
             TextFormField(
-              onChanged: (texten) {
-                enderco = texten;
+              onChanged: (value) {
+                endereco = value;
               },
-              autofocus: false,
               decoration: InputDecoration(
                 labelText: 'Endereço',
-                labelStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400),
               ),
-              style: TextStyle(fontSize: 20),
             ),
-            Container(height: 20, width: 10),
-            new Flexible(
-                child: TextFormField(
-              onChanged: (textcpf) {
-                cpf = textcpf;
-              },
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                labelText: 'CPF:',
-                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
-              ),
-            )),
             Container(height: 20, width: 10),
             TextFormField(
-              onChanged: (textec) {
-                estadocivil = textec;
+                onChanged: (value) {
+                  cpf = value;
+                },
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'CPF:',
+                )),
+            Container(height: 20, width: 10),
+            TextFormField(
+              onChanged: (value) {
+                estadocivil = value;
               },
-              autofocus: false,
               decoration: InputDecoration(
                 labelText: 'Estado civil',
-                labelStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400),
               ),
-              style: TextStyle(fontSize: 20),
             ),
             Container(height: 20, width: 10),
-            RaisedButton(
-              onPressed: () {
-                print('ok');
-                dsihelper.showAlert(
-                    title: 'Sucesso.',
-                    context: context,
-                    message: 'Perfil salvo com sucesso.',
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      Navigator.of(context).pop();
-                    });
-              },
-              child: Text(
-                'Salvar Perfil',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+            SizedBox(
+              width: double.infinity,
+              child: RaisedButton(
+                child: Text('Salvar'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
             ),
+            FlatButton(
+              child: Text('Cancelar'),
+              padding: EdgeInsets.all(5.0),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
           ],
         ),
       ),

@@ -48,16 +48,16 @@ class _ListAlunoPageState extends State<ListAlunoPage> {
   }
 
   Widget _buildListTileAluno(context, index) {
-    Aluno _aluno = _alunos[index];
+    Aluno aluno = _alunos[index];
     return Dismissible(
       key: UniqueKey(),
       onDismissed: (direction) {
         setState(() {
-          alunoControler.remove(_aluno);
+          alunoControler.remove(aluno);
           _alunos.remove(index);
           dsihelper.showMessage(
             context: context,
-            message: 'Aluno ${_aluno.nome} Removido.',
+            message: 'Aluno ${aluno.nome} Removido.',
           );
         });
       },
@@ -78,9 +78,11 @@ class _ListAlunoPageState extends State<ListAlunoPage> {
         ),
       ),
       child: ListTile(
-        title: Text(_aluno.nome),
-        subtitle: Text('mat. ${_aluno.matricula}'),
-        onTap: () {}, //a implementar *****
+        title: Text(aluno.nome),
+        subtitle: Text('mat. ${aluno.matricula}'),
+        onTap: () {
+          Navigator.of(context).pushNamed('/maintainaluno', arguments: aluno);
+        },
       ),
     );
   }
@@ -103,54 +105,40 @@ class MaintainAlunoPage extends StatelessWidget {
         runSpacing: 8.0,
         children: <Widget>[
           TextFormField(
-            keyboardType: TextInputType.number,
-            onChanged: (textn) {},
-            autofocus: false,
-            decoration: InputDecoration(
-              labelText: 'CPF',
-              labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-            style: TextStyle(fontSize: 20),
-          ),
-          TextFormField(
-            onChanged: (textn) {},
-            autofocus: false,
-            decoration: InputDecoration(
-              labelText: 'Nome',
-              labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-            style: TextStyle(fontSize: 20),
-          ),
-          TextFormField(
-            onChanged: (textn) {},
-            autofocus: false,
-            decoration: InputDecoration(
-              labelText: 'Endereço',
-              labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-            style: TextStyle(fontSize: 20),
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(labelText: 'Nome'),
+            validator: (String value) {
+              return value.isEmpty ? 'Nome inválido.' : null;
+            },
+            initialValue: aluno.nome,
+            onSaved: (newValue) => aluno.nome = newValue,
           ),
           TextFormField(
             keyboardType: TextInputType.number,
-            onChanged: (textn) {},
-            autofocus: false,
-            decoration: InputDecoration(
-              labelText: 'Matrícula',
-              labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-            style: TextStyle(fontSize: 20),
+            decoration: InputDecoration(labelText: 'CPF'),
+            validator: (String value) {
+              return value.isEmpty ? 'CPF inválido.' : null;
+            },
+            initialValue: aluno.cpf,
+            onSaved: (newValue) => aluno.cpf = newValue,
+          ),
+          TextFormField(
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(labelText: 'Endereço'),
+            validator: (String value) {
+              return value.isEmpty ? 'Endereço Inválido.' : null;
+            },
+            initialValue: aluno.endereco,
+            onSaved: (newValue) => aluno.endereco = newValue,
+          ),
+          TextFormField(
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(labelText: 'Matrícula'),
+            validator: (String value) {
+              return value.isEmpty ? 'Matrícula inválida.' : null;
+            },
+            initialValue: aluno.cpf,
+            onSaved: (newValue) => aluno.matricula = newValue,
           ),
         ],
       ),

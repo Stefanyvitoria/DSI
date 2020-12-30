@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'infraestrurura.dart';
 import 'constants.dart';
-//import 'DSI_widgets.dart';
 
 class DsiScaffold extends StatelessWidget {
   final String title;
@@ -84,14 +83,12 @@ class DsiScaffold extends StatelessWidget {
   }
 
   Drawer _buildDrawerMenu(context) {
-    //var themeData = Theme.of(context);
-
     return Drawer(
       child: ListView(
         children: [
           UserAccountsDrawerHeader(
-              accountEmail: Text('Ste@ufrpe.br'),
-              accountName: Text('Ste'),
+              accountEmail: Text('Stefany.vitoria@ufrpe.br'),
+              accountName: Text('Stefany Izidio'),
               otherAccountsPictures: [
                 Container(
                   child: Image(
@@ -114,15 +111,11 @@ class DsiScaffold extends StatelessWidget {
                 Navigator.of(context).pushReplacementNamed('/listpessoa'),
           ),
           ListTile(
-              leading: Icon(Icons.book),
-              title: Text('Alunos'),
-              onTap: () => dsihelper.showAlert(
-                    title: 'Alunos',
-                    message: 'A implementar.',
-                    context: context,
-                  )
-              //Navigator.of(context).pushReplacementNamed('/listaluno'),
-              ),
+            leading: Icon(Icons.book),
+            title: Text('Alunos'),
+            onTap: () =>
+                Navigator.of(context).pushReplacementNamed('/listaluno'),
+          ),
           ListTile(
               leading: Icon(Icons.school),
               title: Text('Professores'),

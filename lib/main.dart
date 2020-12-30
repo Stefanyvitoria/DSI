@@ -7,6 +7,7 @@ import 'register_page.dart';
 import 'home_page.dart';
 import 'register_personal_page.dart';
 import 'pessoa.dart';
+import 'aluno.dart';
 
 void main() {
   _initDB();
@@ -63,6 +64,8 @@ class DsiApp extends StatelessWidget {
       '/homepage/account': (context) => RegisterPersonalPage(),
       '/listpessoa': (context) => ListPessoaPage(),
       '/maintainpessoa': (context) => MaintainPessoaPage(),
+      '/listaluno': (context) => ListAlunoPage(),
+      '/maintainaluno': (context) => MaintainAlunoPage(),
     };
   }
 }
@@ -73,6 +76,7 @@ void _initDB() {
     var matricula = i.toString().padLeft(11, '0');
     var cpf =
         '${matricula.substring(0, 3)}.${matricula.substring(3, 6)}.${matricula.substring(6, 9)}-${matricula.substring(9)}';
+
     var aluno = Aluno(
       cpf: cpf,
       nome: 'Aluno $i',
