@@ -143,12 +143,14 @@ class DSIBasicFormPage extends StatefulWidget {
   final onSave;
   final Widget body;
   final hideButtons;
+  final String isP;
 
   DSIBasicFormPage({
     @required this.title,
     this.onSave,
     this.body,
     this.hideButtons = false,
+    this.isP = 'pessoa',
   });
 
   @override
@@ -201,7 +203,11 @@ class _DSIBasicFormPageState extends State<DSIBasicFormPage> {
           child: Text('Cancelar'),
           padding: EdgeInsets.all(5.0),
           onPressed: () {
-            Navigator.of(context).pop();
+            if (widget.isP == 'pessoa') {
+              Navigator.of(context).pushReplacementNamed('/listpessoa');
+            } else if (widget.isP == 'aluno') {
+              Navigator.of(context).pushReplacementNamed('/listaluno');
+            }
           },
         )
       ],

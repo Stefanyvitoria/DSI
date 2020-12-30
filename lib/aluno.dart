@@ -81,7 +81,8 @@ class _ListAlunoPageState extends State<ListAlunoPage> {
         title: Text(aluno.nome),
         subtitle: Text('mat. ${aluno.matricula}'),
         onTap: () {
-          Navigator.of(context).pushNamed('/maintainaluno', arguments: aluno);
+          Navigator.of(context)
+              .pushReplacementNamed('/maintainaluno', arguments: aluno);
         },
       ),
     );
@@ -100,6 +101,7 @@ class MaintainAlunoPage extends StatelessWidget {
         alunoControler.save(aluno);
         Navigator.of(context).pushReplacementNamed('/listaluno');
       },
+      isP: 'aluno',
       body: Wrap(
         alignment: WrapAlignment.center,
         runSpacing: 8.0,

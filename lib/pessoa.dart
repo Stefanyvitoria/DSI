@@ -114,7 +114,8 @@ class _ListPessoaPageState extends State<ListPessoaPage> {
         title: Text(pessoa.nome),
         subtitle: Text('${pessoa.endereco}'),
         onTap: () {
-          Navigator.of(context).pushNamed('/maintainpessoa', arguments: pessoa);
+          Navigator.of(context)
+              .pushReplacementNamed('/maintainpessoa', arguments: pessoa);
         },
       ),
     );
