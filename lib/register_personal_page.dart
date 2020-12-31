@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'infraestrurura.dart';
 import 'DSI_widgets.dart';
 
 class RegisterPersonalPage extends StatefulWidget {

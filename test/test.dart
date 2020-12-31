@@ -156,6 +156,5 @@ class RegisterPersonalPageState extends State<RegisterPersonalPage> {
         ),
       ),
     );
-    ;
   }
 }

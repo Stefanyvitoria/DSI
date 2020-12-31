@@ -54,7 +54,7 @@ class _ListAlunoPageState extends State<ListAlunoPage> {
       onDismissed: (direction) {
         setState(() {
           alunoControler.remove(aluno);
-          _alunos.remove(index);
+          _alunos.removeAt(index);
           dsihelper.showMessage(
             context: context,
             message: 'Aluno ${aluno.nome} Removido.',
@@ -66,14 +66,8 @@ class _ListAlunoPageState extends State<ListAlunoPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(
-              Icons.delete,
-              color: Colors.white,
-            ),
-            Icon(
-              Icons.delete,
-              color: Colors.white,
-            ),
+            Icon(Icons.delete, color: Colors.white),
+            Icon(Icons.delete, color: Colors.white),
           ],
         ),
       ),
@@ -139,7 +133,7 @@ class MaintainAlunoPage extends StatelessWidget {
             validator: (String value) {
               return value.isEmpty ? 'Matrícula inválida.' : null;
             },
-            initialValue: aluno.cpf,
+            initialValue: aluno.matricula,
             onSaved: (newValue) => aluno.matricula = newValue,
           ),
         ],

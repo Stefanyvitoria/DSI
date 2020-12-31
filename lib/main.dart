@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_dsi/aluno.dart';
 import 'package:project_dsi/constants.dart';
+import 'package:project_dsi/professor.dart';
 import 'login_page.dart';
 import 'forgot_password_page.dart';
 import 'register_page.dart';
@@ -8,6 +9,7 @@ import 'home_page.dart';
 import 'register_personal_page.dart';
 import 'pessoa.dart';
 import 'aluno.dart';
+import 'professor.dart';
 
 void main() {
   _initDB();
@@ -66,13 +68,15 @@ class DsiApp extends StatelessWidget {
       '/maintainpessoa': (context) => MaintainPessoaPage(),
       '/listaluno': (context) => ListAlunoPage(),
       '/maintainaluno': (context) => MaintainAlunoPage(),
+      '/listprofessor': (context) => ListProfessorPage(),
+      '/maintainprofessor': (context) => MaintainProfessor(),
     };
   }
 }
 
 void _initDB() {
-  var i = 1;
-  for (i; i <= 20; i++) {
+  var i;
+  for (i = 1; i <= 20; i++) {
     var matricula = i.toString().padLeft(11, '0');
     var cpf =
         '${matricula.substring(0, 3)}.${matricula.substring(3, 6)}.${matricula.substring(6, 9)}-${matricula.substring(9)}';
@@ -84,5 +88,20 @@ void _initDB() {
       matricula: matricula,
     );
     pessoaControler.save(aluno);
+  }
+
+  for (i = 1; i <= 5; i++) {
+    var turma = 'dsi $i';
+    var c = i.toString().padLeft(11, '$i');
+    var cpf =
+        '${c.substring(0, 3)}.${c.substring(3, 6)}.${c.substring(6, 9)}-${c.substring(9)}';
+
+    var professor = Professor(
+      cpf: cpf,
+      nome: 'Professor $i',
+      endereco: 'Rua $i, s/n',
+      turmas: turma,
+    );
+    professorControler.save(professor);
   }
 }

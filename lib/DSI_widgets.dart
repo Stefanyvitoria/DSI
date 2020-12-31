@@ -117,15 +117,11 @@ class DsiScaffold extends StatelessWidget {
                 Navigator.of(context).pushReplacementNamed('/listaluno'),
           ),
           ListTile(
-              leading: Icon(Icons.school),
-              title: Text('Professores'),
-              onTap: () => dsihelper.showAlert(
-                    title: 'Professores.',
-                    message: 'A implementar.',
-                    context: context,
-                  )
-              //Navigator.of(context).pushReplacementNamed('/listprofessor'),
-              ),
+            leading: Icon(Icons.school),
+            title: Text('Professores'),
+            onTap: () =>
+                Navigator.of(context).pushReplacementNamed('/listprofessor'),
+          ),
           Divider(),
           ListTile(
             leading: Icon(Icons.exit_to_app),
@@ -207,6 +203,8 @@ class _DSIBasicFormPageState extends State<DSIBasicFormPage> {
               Navigator.of(context).pushReplacementNamed('/listpessoa');
             } else if (widget.isP == 'aluno') {
               Navigator.of(context).pushReplacementNamed('/listaluno');
+            } else if (widget.isP == 'professor') {
+              Navigator.of(context).pushReplacementNamed('/listprofessor');
             }
           },
         )
