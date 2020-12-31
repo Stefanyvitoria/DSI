@@ -33,7 +33,11 @@ class LoginPageState extends State<LoginPage> {
                 },
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                    labelText: 'Email', labelStyle: TextStyle(fontSize: 20)),
+                  labelText: 'Email',
+                  labelStyle: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
               ),
               Container(height: 20),
               TextFormField(
@@ -43,10 +47,11 @@ class LoginPageState extends State<LoginPage> {
                 keyboardType: TextInputType.text,
                 obscureText: true,
                 decoration: InputDecoration(
-                    labelText: 'Senha',
-                    labelStyle: TextStyle(
-                      fontSize: 20,
-                    )),
+                  labelText: 'Senha',
+                  labelStyle: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
               ),
               Container(
                 height: 40,

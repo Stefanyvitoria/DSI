@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'infraestrurura.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -9,28 +10,6 @@ class RegisterPage extends StatefulWidget {
 
 class RegisterPageState extends State<RegisterPage> {
   String email, usuario, senha1, senha2;
-
-  // ignore: non_constant_identifier_names
-  void Msg() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Cadastro Realizado.'),
-          content: Text('Faça login com seu e-mail e senha.'),
-          actions: [
-            FlatButton(
-              child: Text('Ok'),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pushReplacementNamed('/');
-              },
-            )
-          ],
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,14 +103,27 @@ class RegisterPageState extends State<RegisterPage> {
             Container(height: 30),
             RaisedButton(
               onPressed: () {
-                Msg();
+                dsihelper.showAlert(
+                    context: context,
+                    title: 'Cadastro Realizado.',
+                    message: 'Faça login com seu e-mail e senha.',
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushReplacementNamed('/');
+                    });
               },
               child: Text(
                 'Cadastrar',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-              autofocus: true,
               color: Colors.green[300],
+            ),
+            FlatButton(
+              child: Text('Cancelar'),
+              padding: EdgeInsets.all(5.0),
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed('/');
+              },
             ),
           ],
         ),
