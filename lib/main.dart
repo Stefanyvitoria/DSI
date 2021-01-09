@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:project_dsi/aluno.dart';
-import 'package:project_dsi/constants.dart';
-import 'package:project_dsi/professor.dart';
-import 'login_page.dart';
-import 'forgot_password_page.dart';
-import 'register_page.dart';
-import 'home_page.dart';
-import 'register_personal_page.dart';
-import 'pessoa.dart';
-import 'aluno.dart';
-import 'professor.dart';
+import 'package:project_dsi/model/aluno.dart';
+import 'package:project_dsi/services/constants.dart';
+import 'package:project_dsi/model/professor.dart';
+import 'package:project_dsi/widgets/login_page.dart';
+import 'package:project_dsi/widgets/register_page.dart';
+import 'package:project_dsi/widgets/forgot_password_page.dart';
+import 'package:project_dsi/widgets/home_page.dart';
+import 'package:project_dsi/widgets/register_personal_page.dart';
+import 'package:project_dsi/model/pessoa.dart';
 
 void main() {
   _initDB();

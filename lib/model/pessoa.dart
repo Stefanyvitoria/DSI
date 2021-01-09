@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_dsi/infraestrurura.dart';
-import 'DSI_widgets.dart';
+import 'package:project_dsi/services/infraestrurura.dart';
+import 'package:project_dsi/widgets/DSI_widgets.dart';
 
 abstract class Pessoa {
   int id;

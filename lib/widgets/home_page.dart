@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'DSI_widgets.dart';
-import 'constants.dart';
+import 'package:project_dsi/widgets/DSI_widgets.dart';
+import 'package:project_dsi/services/constants.dart';
 import 'dart:math';
 
 class HomePage extends StatefulWidget {

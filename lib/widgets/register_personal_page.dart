@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'DSI_widgets.dart';
+import 'package:project_dsi/widgets/DSI_widgets.dart';
 
 class RegisterPersonalPage extends StatefulWidget {
   @override

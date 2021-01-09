@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'infraestrurura.dart';
-import 'constants.dart';
+import 'package:project_dsi/services/infraestrurura.dart';
+import 'package:project_dsi/services/constants.dart';
 
 class DsiScaffold extends StatelessWidget {
   final String title;

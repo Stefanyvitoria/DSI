@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_dsi/DSI_widgets.dart';
-import 'package:project_dsi/infraestrurura.dart';
+import 'package:project_dsi/widgets/DSI_widgets.dart';
+import 'package:project_dsi/services/infraestrurura.dart';
 
 import 'pessoa.dart';
 
