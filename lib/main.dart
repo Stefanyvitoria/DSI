@@ -1,7 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:project_dsi/model/aluno.dart';
 import 'package:project_dsi/services/constants.dart';
 import 'package:project_dsi/model/professor.dart';
+import 'package:project_dsi/services/loading.dart';
 import 'package:project_dsi/widgets/login_page.dart';
 import 'package:project_dsi/widgets/register_page.dart';
 import 'package:project_dsi/widgets/forgot_password_page.dart';
@@ -17,13 +19,20 @@ void main() {
 class DsiApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: Constants.appName,
-      debugShowCheckedModeBanner: false,
-      theme: _buidTheme(),
-      initialRoute: '/',
-      routes: _buidRoutes(context),
-    );
+    return FutureBuilder(
+        future: Firebase.initializeApp(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Loading();
+          }
+          return MaterialApp(
+            title: Constants.appName,
+            debugShowCheckedModeBanner: false,
+            theme: _buidTheme(),
+            initialRoute: '/',
+            routes: _buidRoutes(context),
+          );
+        });
   }
 
   ThemeData _buidTheme() {

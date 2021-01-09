@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:project_dsi/services/infraestrurura.dart';
+//import 'package:project_dsi/services/infraestrurura.dart';
 import 'package:project_dsi/widgets/DSI_widgets.dart';
 import 'pessoa.dart';
+import 'package:project_dsi/services/database.dart';
+import 'package:project_dsi/services/loading.dart';
 
 class Aluno extends Pessoa {
   String matricula;
@@ -32,55 +34,99 @@ class ListAlunoPage extends StatefulWidget {
 }
 
 class _ListAlunoPageState extends State<ListAlunoPage> {
-  List<Aluno> _alunos = alunoControler.getAll();
+  //List<Aluno> _alunos = alunoControler.getAll();
 
   @override
   Widget build(BuildContext context) {
     return DsiScaffold(
       title: 'Alunos',
-      body: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        itemCount: _alunos.length,
-        itemBuilder: _buildListTileAluno,
+      body: SafeArea(
+        child: StreamBuilder(
+          stream: DataBaseService().listTodo(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return Loading();
+            }
+            List<Aluno> alunos = snapshot.data;
+            return ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemCount: alunos.length,
+              itemBuilder: (context, index) {
+                return Dismissible(
+                  key: UniqueKey(),
+                  onDismissed: (direction) {
+                    // setState(() {
+                    //   alunoControler.remove(aluno);
+                    //   _alunos.removeAt(index);
+                    //   dsihelper.showMessage(
+                    //     context: context,
+                    //     message: 'Aluno ${aluno.nome} Removido.',
+                    //   );
+                    // });
+                  },
+                  background: Container(
+                    color: Colors.red,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(Icons.delete, color: Colors.white),
+                        Icon(Icons.delete, color: Colors.white),
+                      ],
+                    ),
+                  ),
+                  child: ListTile(
+                    title: Text(alunos[index].nome),
+                    subtitle: Text('mat. ${alunos[index].matricula}'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacementNamed(
+                          '/maintainaluno',
+                          arguments: alunos[index]);
+                    },
+                  ),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
 
-  Widget _buildListTileAluno(context, index) {
-    Aluno aluno = _alunos[index];
-    return Dismissible(
-      key: UniqueKey(),
-      onDismissed: (direction) {
-        setState(() {
-          alunoControler.remove(aluno);
-          _alunos.removeAt(index);
-          dsihelper.showMessage(
-            context: context,
-            message: 'Aluno ${aluno.nome} Removido.',
-          );
-        });
-      },
-      background: Container(
-        color: Colors.red,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Icon(Icons.delete, color: Colors.white),
-            Icon(Icons.delete, color: Colors.white),
-          ],
-        ),
-      ),
-      child: ListTile(
-        title: Text(aluno.nome),
-        subtitle: Text('mat. ${aluno.matricula}'),
-        onTap: () {
-          Navigator.of(context)
-              .pushReplacementNamed('/maintainaluno', arguments: aluno);
-        },
-      ),
-    );
-  }
+  // Widget _buildListTileAluno(context, index) {
+  //   Aluno aluno = _alunos[index];
+  //   return Dismissible(
+  //     key: UniqueKey(),
+  //     onDismissed: (direction) {
+  //       setState(() {
+  //         alunoControler.remove(aluno);
+  //         _alunos.removeAt(index);
+  //         dsihelper.showMessage(
+  //           context: context,
+  //           message: 'Aluno ${aluno.nome} Removido.',
+  //         );
+  //       });
+  //     },
+  //     background: Container(
+  //       color: Colors.red,
+  //       child: Row(
+  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //         children: [
+  //           Icon(Icons.delete, color: Colors.white),
+  //           Icon(Icons.delete, color: Colors.white),
+  //         ],
+  //       ),
+  //     ),
+  //     child: ListTile(
+  //       title: Text(aluno.nome),
+  //       subtitle: Text('mat. ${aluno.matricula}'),
+  //       onTap: () {
+  //         Navigator.of(context)
+  //             .pushReplacementNamed('/maintainaluno', arguments: aluno);
+  //       },
+  //     ),
+  //   );
+  // }
 }
 
 class MaintainAlunoPage extends StatelessWidget {

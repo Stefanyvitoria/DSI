@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "695632057560",
+    "project_id": "dsi-app-stefany",
+    "storage_bucket": "dsi-app-stefany.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695632057560:android:46e4552e54c27bfff4b3ad",
+        "android_client_info": {
+          "package_name": "com.example.project_dsi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "695632057560-k4u4vkoncajubu7cr709ng2r6f5vhgfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSyErpQiFqYmbWmA1nigqzXdXARGk3xpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "695632057560-k4u4vkoncajubu7cr709ng2r6f5vhgfm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
