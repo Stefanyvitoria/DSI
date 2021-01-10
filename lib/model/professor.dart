@@ -42,8 +42,8 @@ class _ListProfessorPageState extends State<ListProfessorPage> {
                   return Dismissible(
                     key: UniqueKey(),
                     onDismissed: (direction) {
-                      DataBaseServiceProfessor()
-                          .removeProfessor(professores[index].id);
+                      DataBaseServiceProfessor().removeProfessor(
+                          professores[index].id, professores[index].cpf);
                       dsihelper.showMessage(
                         context: context,
                         message:
@@ -89,11 +89,12 @@ class MaintainProfessor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Professor professor = ModalRoute.of(context).settings.arguments;
-
+    String cpf = professor.cpf;
     return DSIBasicFormPage(
       title: 'Professor',
       onSave: () {
-        DataBaseServiceProfessor().updateProfessor(professor.id, professor);
+        DataBaseServiceProfessor()
+            .updateProfessor(professor.id, professor, cpf);
         Navigator.of(context).pushReplacementNamed('/listprofessor');
       },
       isP: 'professor',

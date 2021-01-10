@@ -38,8 +38,8 @@ class _ListAlunoPageState extends State<ListAlunoPage> {
                 return Dismissible(
                   key: UniqueKey(),
                   onDismissed: (direction) {
-                    DataBaseServiceAluno().removeAluno(
-                        alunos[index].id, alunos[index], alunos[index].cpf);
+                    DataBaseServiceAluno()
+                        .removeAluno(alunos[index].id, alunos[index].cpf);
                     dsihelper.showMessage(
                       context: context,
                       message: 'Aluno ${alunos[index].nome} Removido.',
