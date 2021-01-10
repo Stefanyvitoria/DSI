@@ -18,8 +18,6 @@ class ListAlunoPage extends StatefulWidget {
 }
 
 class _ListAlunoPageState extends State<ListAlunoPage> {
-  //List<Aluno> _alunos = alunoControler.getAll();
-
   @override
   Widget build(BuildContext context) {
     return DsiScaffold(
