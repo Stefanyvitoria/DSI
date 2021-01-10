@@ -12,7 +12,6 @@ import 'package:project_dsi/widgets/register_personal_page.dart';
 import 'package:project_dsi/model/pessoa.dart';
 
 void main() {
-  _initDB();
   runApp(DsiApp());
 }
 
@@ -78,37 +77,5 @@ class DsiApp extends StatelessWidget {
       '/listprofessor': (context) => ListProfessorPage(),
       '/maintainprofessor': (context) => MaintainProfessor(),
     };
-  }
-}
-
-void _initDB() {
-  var i;
-  for (i = 1; i <= 20; i++) {
-    var matricula = i.toString().padLeft(11, '0');
-    var cpf =
-        '${matricula.substring(0, 3)}.${matricula.substring(3, 6)}.${matricula.substring(6, 9)}-${matricula.substring(9)}';
-
-    var aluno = Aluno(
-      cpf: cpf,
-      nome: 'Aluno $i',
-      endereco: 'Rua $i, s/n',
-      matricula: matricula,
-    );
-    pessoaControler.save(aluno);
-  }
-
-  for (i = 1; i <= 5; i++) {
-    var turma = 'dsi $i';
-    var c = i.toString().padLeft(11, '$i');
-    var cpf =
-        '${c.substring(0, 3)}.${c.substring(3, 6)}.${c.substring(6, 9)}-${c.substring(9)}';
-
-    var professor = Professor(
-      cpf: cpf,
-      nome: 'Professor $i',
-      endereco: 'Rua $i, s/n',
-      turmas: turma,
-    );
-    professorControler.save(professor);
   }
 }

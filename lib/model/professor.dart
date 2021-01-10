@@ -11,7 +11,7 @@ class Professor extends Pessoa {
   String turmas;
 
   Professor({this.turmas, cpf, nome, id, endereco})
-      : super(cpf: cpf, endereco: endereco, nome: nome);
+      : super(cpf: cpf, endereco: endereco, nome: nome, id: id);
 }
 
 class ListProfessorPage extends StatefulWidget {

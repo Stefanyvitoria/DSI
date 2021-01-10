@@ -9,7 +9,7 @@ class Aluno extends Pessoa {
   String matricula;
 
   Aluno({cpf, nome, endereco, id, this.matricula})
-      : super(cpf: cpf, nome: nome, endereco: endereco);
+      : super(cpf: cpf, nome: nome, endereco: endereco, id: id);
 }
 
 class ListAlunoPage extends StatefulWidget {
