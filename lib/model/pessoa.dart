@@ -3,7 +3,7 @@ import 'package:project_dsi/services/infraestrurura.dart';
 import 'package:project_dsi/widgets/DSI_widgets.dart';
 
 abstract class Pessoa {
-  int id;
+  var id;
   String cpf, nome, endereco;
 
   Pessoa({this.id, this.cpf, this.nome, this.endereco});

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_dsi/services/database.dart';
+import 'package:project_dsi/services/loading.dart';
 import 'package:project_dsi/widgets/DSI_widgets.dart';
 import 'package:project_dsi/services/infraestrurura.dart';
 
@@ -8,24 +10,8 @@ import 'pessoa.dart';
 class Professor extends Pessoa {
   String turmas;
 
-  Professor({this.turmas, cpf, nome, endereco})
+  Professor({this.turmas, cpf, nome, id, endereco})
       : super(cpf: cpf, endereco: endereco, nome: nome);
-}
-
-var professorControler = ProfessorControler();
-
-class ProfessorControler {
-  List<Professor> getAll() {
-    return pessoaControler.getAll().whereType<Professor>().toList();
-  }
-
-  Professor save(professor) {
-    return pessoaControler.save(professor);
-  }
-
-  bool remove(professor) {
-    return pessoaControler.remove(professor);
-  }
 }
 
 class ListProfessorPage extends StatefulWidget {
@@ -34,58 +20,65 @@ class ListProfessorPage extends StatefulWidget {
 }
 
 class _ListProfessorPageState extends State<ListProfessorPage> {
-  List<Professor> _professores = professorControler.getAll();
+  //List<Professor> _professores = professorControler.getAll();
 
   @override
   Widget build(BuildContext contex) {
     return DsiScaffold(
       title: 'Professores',
-      body: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        itemCount: _professores.length,
-        itemBuilder: _builListTileProfessor,
+      body: SafeArea(
+        child: StreamBuilder(
+            stream: DataBaseServiceProfessor().listProfessor(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Loading();
+              }
+              List<Professor> professores = snapshot.data;
+              return ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: professores.length,
+                itemBuilder: (context, index) {
+                  return Dismissible(
+                    key: UniqueKey(),
+                    onDismissed: (direction) {
+                      DataBaseServiceProfessor()
+                          .removeProfessor(professores[index].id);
+                      dsihelper.showMessage(
+                        context: context,
+                        message:
+                            'Professor ${professores[index].nome} removido.',
+                      );
+                    },
+                    background: Container(
+                      color: Colors.red,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(Icons.delete, color: Colors.white),
+                          Icon(Icons.delete, color: Colors.white),
+                        ],
+                      ),
+                    ),
+                    child: ListTile(
+                      title: Text(professores[index].nome),
+                      subtitle: Text('turma: ${professores[index].turmas}'),
+                      onTap: () {
+                        Navigator.of(context).pushReplacementNamed(
+                            '/maintainprofessor',
+                            arguments: professores[index]);
+                      },
+                    ),
+                  );
+                },
+              );
+            }),
       ),
       floatActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => _AddProfessor()));
-        },
-      ),
-    );
-  }
-
-  Widget _builListTileProfessor(context, index) {
-    Professor professor = _professores[index];
-    return Dismissible(
-      key: UniqueKey(),
-      onDismissed: (direction) {
-        setState(() {
-          professorControler.remove(professor);
-          _professores.removeAt(index);
-          dsihelper.showMessage(
-            context: context,
-            message: 'Professor ${professor.nome} removido.',
-          );
-        });
-      },
-      background: Container(
-        color: Colors.red,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Icon(Icons.delete, color: Colors.white),
-            Icon(Icons.delete, color: Colors.white),
-          ],
-        ),
-      ),
-      child: ListTile(
-        title: Text(professor.nome),
-        subtitle: Text('turma: ${professor.turmas}'),
-        onTap: () {
-          Navigator.of(context)
-              .pushReplacementNamed('/maintainprofessor', arguments: professor);
         },
       ),
     );
@@ -100,7 +93,7 @@ class MaintainProfessor extends StatelessWidget {
     return DSIBasicFormPage(
       title: 'Professor',
       onSave: () {
-        professorControler.save(professor);
+        DataBaseServiceProfessor().updateProfessor(professor.id, professor);
         Navigator.of(context).pushReplacementNamed('/listprofessor');
       },
       isP: 'professor',
@@ -163,7 +156,7 @@ class __AddProfessorState extends State<_AddProfessor> {
     return DSIBasicFormPage(
       title: 'Professor',
       onSave: () {
-        professorControler.save(professor);
+        DataBaseServiceProfessor().createNewProfessor(professor);
         Navigator.of(context).pushReplacementNamed('/listprofessor');
       },
       isP: 'professor',

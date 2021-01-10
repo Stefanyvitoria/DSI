@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:project_dsi/services/infraestrurura.dart';
+import 'package:project_dsi/services/infraestrurura.dart';
 import 'package:project_dsi/widgets/DSI_widgets.dart';
 import 'pessoa.dart';
 import 'package:project_dsi/services/database.dart';
@@ -8,24 +8,8 @@ import 'package:project_dsi/services/loading.dart';
 class Aluno extends Pessoa {
   String matricula;
 
-  Aluno({cpf, nome, endereco, this.matricula})
+  Aluno({cpf, nome, endereco, id, this.matricula})
       : super(cpf: cpf, nome: nome, endereco: endereco);
-}
-
-var alunoControler = AlunoControler();
-
-class AlunoControler {
-  List<Aluno> getAll() {
-    return pessoaControler.getAll().whereType<Aluno>().toList();
-  }
-
-  Aluno save(aluno) {
-    return pessoaControler.save(aluno);
-  }
-
-  bool remove(aluno) {
-    return pessoaControler.remove(aluno);
-  }
 }
 
 class ListAlunoPage extends StatefulWidget {
@@ -42,7 +26,7 @@ class _ListAlunoPageState extends State<ListAlunoPage> {
       title: 'Alunos',
       body: SafeArea(
         child: StreamBuilder(
-          stream: DataBaseService().listAluno(),
+          stream: DataBaseServiceAluno().listAluno(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return Loading();
@@ -56,14 +40,11 @@ class _ListAlunoPageState extends State<ListAlunoPage> {
                 return Dismissible(
                   key: UniqueKey(),
                   onDismissed: (direction) {
-                    // setState(() {
-                    //   alunoControler.remove(aluno);
-                    //   _alunos.removeAt(index);
-                    //   dsihelper.showMessage(
-                    //     context: context,
-                    //     message: 'Aluno ${aluno.nome} Removido.',
-                    //   );
-                    // });
+                    DataBaseServiceAluno().removeAluno(alunos[index].id);
+                    dsihelper.showMessage(
+                      context: context,
+                      message: 'Aluno ${alunos[index].nome} Removido.',
+                    );
                   },
                   background: Container(
                     color: Colors.red,
@@ -110,7 +91,7 @@ class MaintainAlunoPage extends StatelessWidget {
     return DSIBasicFormPage(
       title: 'Aluno',
       onSave: () {
-        alunoControler.save(aluno);
+        DataBaseServiceAluno().updateAluno(aluno.id, aluno);
         Navigator.of(context).pushReplacementNamed('/listaluno');
       },
       isP: 'aluno',
@@ -173,7 +154,7 @@ class __AddAlunoState extends State<_AddAluno> {
     return DSIBasicFormPage(
       title: 'Aluno',
       onSave: () {
-        alunoControler.save(aluno);
+        DataBaseServiceAluno().createNewAluno(aluno);
         Navigator.of(context).pushReplacementNamed('/listaluno');
       },
       isP: 'aluno',
