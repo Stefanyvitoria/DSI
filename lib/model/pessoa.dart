@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_dsi/services/constants.dart';
 import 'package:project_dsi/services/database.dart';
-import 'package:project_dsi/services/infraestrurura.dart';
+import 'package:project_dsi/services/loading.dart';
 import 'package:project_dsi/widgets/DSI_widgets.dart';
 
 class Pessoa {
@@ -25,42 +25,26 @@ class _ListPessoaPageState extends State<ListPessoaPage> {
         child: StreamBuilder<Object>(
             stream: DataBaseServicePessoa().listPessoa(), //*****
             builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Loading();
+              }
               List<Pessoa> pessoas = snapshot.data;
-              return ListView.builder(
+              return ListView.separated(
+                separatorBuilder: (context, index) {
+                  return Divider();
+                },
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 itemCount: pessoas.length,
                 itemBuilder: (context, index) {
-                  return Dismissible(
-                    key: UniqueKey(),
-                    onDismissed: (direction) {
-                      DataBaseServicePessoa().removePessoa(pessoas[index].id);
-                      dsihelper.showMessage(
-                          context: context,
-                          message: '${pessoas[index].nome} removido.');
+                  return ListTile(
+                    title: Text(pessoas[index].nome),
+                    subtitle: Text('${pessoas[index].endereco}'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacementNamed(
+                          '/maintainpessoa',
+                          arguments: pessoas[index]);
                     },
-                    background: Container(
-                      color: Colors.red,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Icon(Icons.delete, color: Colors.white),
-                          Icon(
-                            Icons.delete,
-                            color: Colors.white,
-                          )
-                        ],
-                      ),
-                    ),
-                    child: ListTile(
-                      title: Text(pessoas[index].nome),
-                      subtitle: Text('${pessoas[index].endereco}'),
-                      onTap: () {
-                        Navigator.of(context).pushReplacementNamed(
-                            '/maintainpessoa',
-                            arguments: pessoas[index]);
-                      },
-                    ),
                   );
                 },
               );

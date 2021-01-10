@@ -38,7 +38,8 @@ class _ListAlunoPageState extends State<ListAlunoPage> {
                 return Dismissible(
                   key: UniqueKey(),
                   onDismissed: (direction) {
-                    DataBaseServiceAluno().removeAluno(alunos[index].id);
+                    DataBaseServiceAluno().removeAluno(
+                        alunos[index].id, alunos[index], alunos[index].cpf);
                     dsihelper.showMessage(
                       context: context,
                       message: 'Aluno ${alunos[index].nome} Removido.',
@@ -84,12 +85,13 @@ class MaintainAlunoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Aluno aluno = ModalRoute.of(context).settings.arguments;
+    String cpf = aluno.cpf;
     if (aluno == null) aluno = Aluno();
 
     return DSIBasicFormPage(
       title: 'Aluno',
       onSave: () {
-        DataBaseServiceAluno().updateAluno(aluno.id, aluno);
+        DataBaseServiceAluno().updateAluno(aluno.id, aluno, cpf);
         Navigator.of(context).pushReplacementNamed('/listaluno');
       },
       isP: 'aluno',

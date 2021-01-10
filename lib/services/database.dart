@@ -9,6 +9,7 @@ class DataBaseServiceAluno {
 
   Future createNewAluno(Aluno aluno) async {
     //Create
+    DataBaseServicePessoa().createNewPessoa(aluno);
     return await alunoCollection.add({
       "nome": aluno.nome,
       "cpf": aluno.cpf,
@@ -17,16 +18,27 @@ class DataBaseServiceAluno {
     });
   }
 
-  Future updateAluno(uid, Aluno aluno) async {
+  Future updateAluno(uid, Aluno aluno, cpf) async {
     //Update
+    var doc = await FirebaseFirestore.instance
+        .collection('pessoas')
+        .where('cpf', isEqualTo: cpf)
+        .get();
+    DataBaseServicePessoa().updatePessoa(doc.docs[0].id, aluno);
+
     await alunoCollection.doc(uid).update({"nome": aluno.nome});
     await alunoCollection.doc(uid).update({"cpf": aluno.cpf});
     await alunoCollection.doc(uid).update({"endereco": aluno.endereco});
     await alunoCollection.doc(uid).update({"matricula": aluno.matricula});
   }
 
-  Future removeAluno(uid) async {
+  Future removeAluno(uid, Aluno aluno, cpf) async {
     //delete
+    var doc = await FirebaseFirestore.instance
+        .collection('pessoas')
+        .where('cpf', isEqualTo: cpf)
+        .get();
+    DataBaseServicePessoa().removePessoa(doc.docs[0].id);
 
     await alunoCollection.doc(uid).delete();
   }
