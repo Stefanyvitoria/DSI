@@ -90,6 +90,13 @@ class _ListAlunoPageState extends State<ListAlunoPage> {
           },
         ),
       ),
+      floatActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => _AddAluno()));
+        },
+      ),
     );
   }
 }
@@ -139,12 +146,71 @@ class MaintainAlunoPage extends StatelessWidget {
             onSaved: (newValue) => aluno.endereco = newValue,
           ),
           TextFormField(
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.text,
             decoration: InputDecoration(labelText: 'Matrícula'),
             validator: (String value) {
               return value.isEmpty ? 'Matrícula inválida.' : null;
             },
             initialValue: aluno.matricula,
+            onSaved: (newValue) => aluno.matricula = newValue,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _AddAluno extends StatefulWidget {
+  @override
+  __AddAlunoState createState() => __AddAlunoState();
+}
+
+class __AddAlunoState extends State<_AddAluno> {
+  Aluno aluno = Aluno();
+
+  @override
+  Widget build(context) {
+    return DSIBasicFormPage(
+      title: 'Aluno',
+      onSave: () {
+        alunoControler.save(aluno);
+        Navigator.of(context).pushReplacementNamed('/listaluno');
+      },
+      isP: 'aluno',
+      body: Wrap(
+        alignment: WrapAlignment.center,
+        runSpacing: 8.0,
+        children: <Widget>[
+          TextFormField(
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(labelText: 'Nome'),
+            validator: (String value) {
+              return value.isEmpty ? 'Nome inválido.' : null;
+            },
+            onSaved: (newValue) => aluno.nome = newValue,
+          ),
+          TextFormField(
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(labelText: 'CPF'),
+            validator: (String value) {
+              return value.isEmpty ? 'CPF inválido.' : null;
+            },
+            onSaved: (newValue) => aluno.cpf = newValue,
+          ),
+          TextFormField(
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(labelText: 'Endereço'),
+            validator: (String value) {
+              return value.isEmpty ? 'Endereço Inválido.' : null;
+            },
+            onSaved: (newValue) => aluno.endereco = newValue,
+          ),
+          TextFormField(
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(labelText: 'Matrícula'),
+            validator: (String value) {
+              return value.isEmpty ? 'Matrícula inválida.' : null;
+            },
             onSaved: (newValue) => aluno.matricula = newValue,
           ),
         ],
