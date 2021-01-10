@@ -149,8 +149,14 @@ class MaintainAlunoPage extends StatelessWidget {
   }
 }
 
-class _AddAluno extends StatelessWidget {
+class _AddAluno extends StatefulWidget {
+  @override
+  __AddAlunoState createState() => __AddAlunoState();
+}
+
+class __AddAlunoState extends State<_AddAluno> {
   Aluno aluno = Aluno();
+
   @override
   Widget build(context) {
     return DSIBasicFormPage(

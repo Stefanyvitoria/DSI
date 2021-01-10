@@ -150,8 +150,14 @@ class MaintainProfessor extends StatelessWidget {
   }
 }
 
-class _AddProfessor extends StatelessWidget {
+class _AddProfessor extends StatefulWidget {
+  @override
+  __AddProfessorState createState() => __AddProfessorState();
+}
+
+class __AddProfessorState extends State<_AddProfessor> {
   Professor professor = Professor();
+
   @override
   Widget build(BuildContext context) {
     return DSIBasicFormPage(

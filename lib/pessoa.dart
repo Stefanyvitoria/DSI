@@ -85,39 +85,13 @@ class _ListPessoaPageState extends State<ListPessoaPage> {
   Widget _builListTilePessoas(context, index) {
     var pessoa = _pessoasList[index];
 
-    return Dismissible(
-      key: UniqueKey(),
-      onDismissed: (direction) {
-        setState(() {
-          pessoaControler.remove(
-              pessoa); //remove da listagem do escopo global (Sincronizado com a listagem de alunos).
-          _pessoasList.remove(
-              index); //remove da listagem do escopo local (Listagem de Pessoas).
-          dsihelper.showMessage(
-              context: context, message: '${pessoa.nome} removido.');
-        });
+    return ListTile(
+      title: Text(pessoa.nome),
+      subtitle: Text('${pessoa.endereco}'),
+      onTap: () {
+        Navigator.of(context)
+            .pushReplacementNamed('/maintainpessoa', arguments: pessoa);
       },
-      background: Container(
-        color: Colors.red,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Icon(Icons.delete, color: Colors.white),
-            Icon(
-              Icons.delete,
-              color: Colors.white,
-            )
-          ],
-        ),
-      ),
-      child: ListTile(
-        title: Text(pessoa.nome),
-        subtitle: Text('${pessoa.endereco}'),
-        onTap: () {
-          Navigator.of(context)
-              .pushReplacementNamed('/maintainpessoa', arguments: pessoa);
-        },
-      ),
     );
   }
 }
@@ -131,10 +105,6 @@ class MaintainPessoaPage extends StatelessWidget {
 
     return DSIBasicFormPage(
       title: 'Pessoa',
-      onSave: () {
-        pessoaControler.save(pessoa);
-        Navigator.of(context).pushReplacementNamed('/listpessoa');
-      },
       body: Wrap(
         children: [
           TextFormField(
