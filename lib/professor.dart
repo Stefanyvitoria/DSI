@@ -46,6 +46,13 @@ class _ListProfessorPageState extends State<ListProfessorPage> {
         itemCount: _professores.length,
         itemBuilder: _builListTileProfessor,
       ),
+      floatActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => _AddProfessor()));
+        },
+      ),
     );
   }
 
@@ -129,12 +136,65 @@ class MaintainProfessor extends StatelessWidget {
             onSaved: (newValue) => professor.endereco = newValue,
           ),
           TextFormField(
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.text,
             decoration: InputDecoration(labelText: 'Turma'),
             validator: (String value) {
               return value.isEmpty ? 'Turma inválida.' : null;
             },
             initialValue: professor.turmas,
+            onSaved: (newValue) => professor.turmas = newValue,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _AddProfessor extends StatelessWidget {
+  Professor professor = Professor();
+  @override
+  Widget build(BuildContext context) {
+    return DSIBasicFormPage(
+      title: 'Professor',
+      onSave: () {
+        professorControler.save(professor);
+        Navigator.of(context).pushReplacementNamed('/listprofessor');
+      },
+      isP: 'professor',
+      body: Wrap(
+        alignment: WrapAlignment.center,
+        runSpacing: 8.0,
+        children: <Widget>[
+          TextFormField(
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(labelText: 'Nome'),
+            validator: (String value) {
+              return value.isEmpty ? 'Nome inválido.' : null;
+            },
+            onSaved: (newValue) => professor.nome = newValue,
+          ),
+          TextFormField(
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(labelText: 'CPF'),
+            validator: (String value) {
+              return value.isEmpty ? 'CPF inválido.' : null;
+            },
+            onSaved: (newValue) => professor.cpf = newValue,
+          ),
+          TextFormField(
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(labelText: 'Endereço'),
+            validator: (String value) {
+              return value.isEmpty ? 'Endereço Inválido.' : null;
+            },
+            onSaved: (newValue) => professor.endereco = newValue,
+          ),
+          TextFormField(
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(labelText: 'Turma'),
+            validator: (String value) {
+              return value.isEmpty ? 'Turma inválida.' : null;
+            },
             onSaved: (newValue) => professor.turmas = newValue,
           )
         ],
