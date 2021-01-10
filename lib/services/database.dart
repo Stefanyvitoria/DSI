@@ -3,15 +3,17 @@ import 'package:project_dsi/model/aluno.dart';
 
 class DataBaseService {
   CollectionReference todosCollection =
-      FirebaseFirestore.instance.collection('pessoas');
+      FirebaseFirestore.instance.collection('alunos');
 
-  // Future createNewTodo(String title) async {
-  //   //Create
-  //   return await todosCollection.add({
-  //     "title": title,
-  //     "isComplet": false,
-  //   });
-  // }
+  Future createNewAluno(Aluno aluno) async {
+    //Create
+    return await todosCollection.add({
+      "nome": aluno.nome,
+      "cpf": aluno.cpf,
+      "endereco": aluno.endereco,
+      "matrícula": aluno.matricula,
+    });
+  }
 
   // Future completTask(uid) async {
   //   //Update
@@ -22,7 +24,7 @@ class DataBaseService {
   //   await todosCollection.doc(uid).delete();
   // }
 
-  List<Aluno> todoFromFirestore(QuerySnapshot snapshot) {
+  List<Aluno> alunosFromFirestore(QuerySnapshot snapshot) {
     if (snapshot != null) {
       return snapshot.docs.map((e) {
         return Aluno(
@@ -36,7 +38,7 @@ class DataBaseService {
       return null;
   }
 
-  Stream<List<Aluno>> listTodo() {
-    return todosCollection.snapshots().map(todoFromFirestore);
+  Stream<List<Aluno>> listAluno() {
+    return todosCollection.snapshots().map(alunosFromFirestore);
   }
 }

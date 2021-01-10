@@ -42,7 +42,7 @@ class _ListAlunoPageState extends State<ListAlunoPage> {
       title: 'Alunos',
       body: SafeArea(
         child: StreamBuilder(
-          stream: DataBaseService().listTodo(),
+          stream: DataBaseService().listAluno(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return Loading();
@@ -92,41 +92,6 @@ class _ListAlunoPageState extends State<ListAlunoPage> {
       ),
     );
   }
-
-  // Widget _buildListTileAluno(context, index) {
-  //   Aluno aluno = _alunos[index];
-  //   return Dismissible(
-  //     key: UniqueKey(),
-  //     onDismissed: (direction) {
-  //       setState(() {
-  //         alunoControler.remove(aluno);
-  //         _alunos.removeAt(index);
-  //         dsihelper.showMessage(
-  //           context: context,
-  //           message: 'Aluno ${aluno.nome} Removido.',
-  //         );
-  //       });
-  //     },
-  //     background: Container(
-  //       color: Colors.red,
-  //       child: Row(
-  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //         children: [
-  //           Icon(Icons.delete, color: Colors.white),
-  //           Icon(Icons.delete, color: Colors.white),
-  //         ],
-  //       ),
-  //     ),
-  //     child: ListTile(
-  //       title: Text(aluno.nome),
-  //       subtitle: Text('mat. ${aluno.matricula}'),
-  //       onTap: () {
-  //         Navigator.of(context)
-  //             .pushReplacementNamed('/maintainaluno', arguments: aluno);
-  //       },
-  //     ),
-  //   );
-  // }
 }
 
 class MaintainAlunoPage extends StatelessWidget {
