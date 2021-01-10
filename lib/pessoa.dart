@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_dsi/infraestrurura.dart';
 import 'DSI_widgets.dart';
 
 abstract class Pessoa {
@@ -73,7 +72,8 @@ class _ListPessoaPageState extends State<ListPessoaPage> {
   Widget build(BuildContext context) {
     return DsiScaffold(
       title: 'Pessoas',
-      body: ListView.builder(
+      body: ListView.separated(
+        separatorBuilder: (context, index) => Divider(),
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
         itemCount: _pessoasList.length,
@@ -105,6 +105,10 @@ class MaintainPessoaPage extends StatelessWidget {
 
     return DSIBasicFormPage(
       title: 'Pessoa',
+      onSave: () {
+        pessoaControler.save(pessoa);
+        Navigator.of(context).pushReplacementNamed('/listpessoa');
+      },
       body: Wrap(
         children: [
           TextFormField(
